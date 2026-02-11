@@ -52,7 +52,7 @@ if len(st.session_state.known_face_encodings) == 0:
 # -----------------------------
 # REGISTER FUNCTION
 # -----------------------------
-def register_student(name, email, photo):
+def register_student(name, photo):
     photo_path = os.path.join(KNOWN_FACES_DIR, f"{name}.jpg")
 
     try:
@@ -102,12 +102,11 @@ if menu == "Register Member":
         st.subheader("Upload Member Photo")
 
         name = st.text_input("Name", key="upload_name")
-        email = st.text_input("Email", key="upload_email")
         photo = st.file_uploader("Choose an image (JPG, PNG)", type=["jpg", "png"])
 
         if st.button("Register Member", key="register_upload"):
-            if name and email and photo:
-                register_student(name, email, photo)
+            if name and photo:
+                register_student(name, photo)
             else:
                 st.error("Please fill all fields.")
 
@@ -119,13 +118,12 @@ if menu == "Register Member":
 
         if camera_photo is not None:
             name_web = st.text_input("Name (Webcam)", key="webcam_name")
-            email_web = st.text_input("Email (Webcam)", key="webcam_email")
 
             if st.button("Register from Webcam", key="register_webcam"):
-                if name_web and email_web:
-                    register_student(name_web, email_web, camera_photo)
+                if name_web:
+                    register_student(name_web, camera_photo)
                 else:
-                    st.error("Please enter name and email.")
+                    st.error("Please enter name.")
 
     st.markdown("---")
     st.markdown("### 💡 Tips")
