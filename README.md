@@ -31,6 +31,12 @@ Follow these steps carefully:
 
 
 If downloaded the file , simply navigate into the project folder:
+OR
+
+```
+git clone <type-repository-url>
+cd face_recognition_project
+```
 
 ```bash
 cd face_recognition
